@@ -1,0 +1,112 @@
+--- vte-0.36.3/gnome-pty-helper/Makefile.am~	2014-04-07 09:37:29.000000000 +0200
++++ vte-0.36.3/gnome-pty-helper/Makefile.am	2014-11-20 20:41:56.171948850 +0100
+@@ -1,18 +1,18 @@
+-libexec_PROGRAMS = gnome-pty-helper
++libexec_PROGRAMS = vte2.90-pty-helper
+ 
+-gnome_pty_helper_SOURCES = \
++vte2_90_pty_helper_SOURCES = \
+ 	gnome-pty.h \
+ 	gnome-login-support.c \
+ 	gnome-login-support.h \
+ 	gnome-pty-helper.c \
+ 	gnome-utmp.c
+ 
+-gnome_pty_helper_CFLAGS = $(SUID_CFLAGS) $(AM_CFLAGS)
+-gnome_pty_helper_LDFLAGS = $(SUID_LDFLAGS) $(AM_LDFLAGS)
++vte2_90_pty_helper_CFLAGS = $(SUID_CFLAGS) $(AM_CFLAGS)
++vte2_90_pty_helper_LDFLAGS = $(SUID_LDFLAGS) $(AM_LDFLAGS)
+ 
+ install-exec-hook:
+-	chown root.utmp $(DESTDIR)$(libexecdir)/gnome-pty-helper || true
+-	chmod g+s       $(DESTDIR)$(libexecdir)/gnome-pty-helper || true
++	chown root.utmp $(DESTDIR)$(libexecdir)/vte2.90-pty-helper || true
++	chmod g+s       $(DESTDIR)$(libexecdir)/vte2.90-pty-helper || true
+ 
+ MAINTAINERCLEANFILES = \
+ 		$(srcdir)/INSTALL \
+--- vte-0.36.3/src/pty.c~	2014-06-23 19:26:54.000000000 +0200
++++ vte-0.36.3/src/pty.c	2014-11-20 20:43:22.788612462 +0100
+@@ -1249,7 +1249,7 @@
+ 	}
+ 	if (_vte_pty_helper_pid == 0) {
+ 		/* Child.  Close descriptors.  No need to close all,
+-		 * gnome-pty-helper does that anyway. */
++		 * vte2.90-pty-helper does that anyway. */
+ 		for (i = 0; i < 3; i++) {
+ 			close(i);
+ 		}
+@@ -1259,8 +1259,8 @@
+ 		close(tunnel);
+ 		close(_vte_pty_helper_tunnel);
+ 		/* Exec our helper. */
+-		execl(LIBEXECDIR "/gnome-pty-helper",
+-		      "gnome-pty-helper", NULL);
++		execl(LIBEXECDIR "/vte2.90-pty-helper",
++		      "vte2.90-pty-helper", NULL);
+ 		/* Bail. */
+ 		_exit(1);
+ 	}
+@@ -1275,7 +1275,7 @@
+ 
+         g_set_error(error, VTE_PTY_ERROR,
+                     VTE_PTY_ERROR_PTY_HELPER_FAILED,
+-                    "Failed to start gnome-pty-helper: %s",
++                    "Failed to start vte2.90-pty-helper: %s",
+                     g_strerror (errsv));
+ 
+         if (tmp[0] != -1)
+@@ -1363,7 +1363,7 @@
+                     &ops, sizeof(ops)) != sizeof(ops)) {
+                 g_set_error (error, VTE_PTY_ERROR,
+                               VTE_PTY_ERROR_PTY_HELPER_FAILED,
+-                              "Failed to send request to gnome-pty-helper: %s",
++                              "Failed to send request to vte2.90-pty-helper: %s",
+                               g_strerror(errno));
+                 return FALSE;
+         }
+@@ -1373,7 +1373,7 @@
+                     &ret, sizeof(ret)) != sizeof(ret)) {
+                 g_set_error (error, VTE_PTY_ERROR,
+                               VTE_PTY_ERROR_PTY_HELPER_FAILED,
+-                              "Failed to read response from gnome-pty-helper: %s",
++                              "Failed to read response from vte2.90-pty-helper: %s",
+                               g_strerror(errno));
+                 return FALSE;
+         }
+@@ -1382,7 +1382,7 @@
+         if (ret == 0) {
+                 g_set_error_literal (error, VTE_PTY_ERROR,
+                                       VTE_PTY_ERROR_PTY_HELPER_FAILED,
+-                                      "gnome-pty-helper failed to open pty");
++                                      "vte2.90-pty-helper failed to open pty");
+                 return FALSE;
+         }
+         _vte_debug_print(VTE_DEBUG_PTY, "Helper returns success.\n");
+@@ -1391,7 +1391,7 @@
+                     &tag, sizeof(tag)) != sizeof(tag)) {
+                 g_set_error (error, VTE_PTY_ERROR,
+                               VTE_PTY_ERROR_PTY_HELPER_FAILED,
+-                              "Failed to read tag from gnome-pty-helper: %s",
++                              "Failed to read tag from vte2.90-pty-helper: %s",
+                               g_strerror(errno));
+                 return FALSE;
+         }
+@@ -1408,7 +1408,7 @@
+ 
+                 g_set_error (error, VTE_PTY_ERROR,
+                               VTE_PTY_ERROR_PTY_HELPER_FAILED,
+-                              "Failed to read master or slave pty from gnome-pty-helper: %s",
++                              "Failed to read master or slave pty from vte2.90-pty-helper: %s",
+                               g_strerror(errsv));
+                 errno = errsv;
+                 return FALSE;
+@@ -1579,7 +1579,7 @@
+                                  "_vte_pty_open_with_helper failed: %s\n",
+                                  err->message);
+ 
+-                /* Only do fallback if gnome-pty-helper failed! */
++                /* Only do fallback if vte2.90-pty-helper failed! */
+                 if ((priv->flags & VTE_PTY_NO_FALLBACK) ||
+                     !g_error_matches(err,
+                                      VTE_PTY_ERROR,

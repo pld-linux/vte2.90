@@ -1,15 +1,16 @@
 Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
-Name:		vte
+Name:		vte2.90
 Version:	0.36.3
 Release:	1
 License:	LGPL v2+
 Group:		X11/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.36/%{name}-%{version}.tar.xz
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.36/vte-%{version}.tar.xz
 # Source0-md5:	3f9df4c9a67b09bf5c660bf5c3bae109
 # https://bugzilla.gnome.org/show_bug.cgi?id=663779
-Patch0:		%{name}-alt-meta.patch
-Patch1:		%{name}-am.patch
+Patch0:		vte-alt-meta.patch
+Patch1:		vte-am.patch
+Patch2:		rename-pty-helper.patch
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-dtd412-xml
@@ -99,9 +100,10 @@ VTE API documentation (GTK+ 3 version).
 Dokumentacja API VTE (wersja dla GTK+ 3).
 
 %prep
-%setup -q
+%setup -q -n vte-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gtkdocize}
@@ -133,9 +135,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__mv} $RPM_BUILD_ROOT/etc/profile.d/vte{,2.90}.sh
+
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
-%find_lang %{name}-2.90
+%find_lang vte-2.90
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -149,12 +153,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libvte2_90.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libvte2_90.so.9
 %{_libdir}/girepository-1.0/Vte-2.90.typelib
-%config(noreplace) %verify(not md5 mtime size) /etc/profile.d/vte.sh
+%config(noreplace) %verify(not md5 mtime size) /etc/profile.d/vte2.90.sh
 
 %files common
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog MAINTAINERS NEWS README
-%attr(2755,root,utmp) %{_libdir}/gnome-pty-helper
+%attr(2755,root,utmp) %{_libdir}/vte2.90-pty-helper
 
 %files devel
 %defattr(644,root,root,755)
