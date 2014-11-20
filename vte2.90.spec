@@ -164,7 +164,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f vte-2.91.lang
+%files -f vte-2.90.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/vte2_90
 %attr(755,root,root) %{_libdir}/libvte2_90.so.*.*.*
