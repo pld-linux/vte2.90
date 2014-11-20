@@ -185,7 +185,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libvte-2.90.so
+%attr(755,root,root) %{_libdir}/libvte2_90.so
 %{_includedir}/vte-2.90
 %{_pkgconfigdir}/vte-2.90.pc
 %{_datadir}/gir-1.0/Vte-2.90.gir
