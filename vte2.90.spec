@@ -37,6 +37,7 @@ Requires:	gtk+3 >= 3.8.0
 Requires:	pango >= 1:1.22.0
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
+Obsoletes:	vte < 0.37
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -52,6 +53,7 @@ Summary:	Common files for vte and vte0
 Summary(pl.UTF-8):	Pliki wspólne dla vte i vte0
 Group:		X11/Libraries
 Requires(pre):	utempter
+Obsoletes:	vte-common < 0.37
 
 %description common
 Common files for GTK+ 3 based vte and GTK+ 2 based vte0.
@@ -69,6 +71,7 @@ Requires:	gtk+3-devel >= 3.8.0
 Requires:	ncurses-devel
 Requires:	pango-devel >= 1:1.22.0
 Conflicts:	gnome-libs-devel < 1.4.1.2
+Obsoletes:	vte-devel < 0.37
 
 %description devel
 This package contains header files for GTK+ 3 based vte library.
@@ -83,6 +86,7 @@ Summary(pl.UTF-8):	Statyczna biblioteka VTE dla GTK+ 3
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Conflicts:	gnome-libs-static < 1.4.1.2
+Obsoletes:	vte-static < 0.37
 
 %description static
 Static version of VTE library for GTK+ 3.
@@ -90,17 +94,18 @@ Static version of VTE library for GTK+ 3.
 %description static -l pl.UTF-8
 Statyczna wersja biblioteki VTE dla GTK+ 3.
 
-%package -n vala-vte
+%package -n vala-vte2.90
 Summary:	Vala API for VTE library
 Summary(pl.UTF-8):	API języka Vala dla biblioteki VTE
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 Requires:	vala >= 2:0.18
+Obsoletes:	vala-vte < 0.37
 
-%description -n vala-vte
+%description -n vala-vte2.90
 Vala API for VTE library.
 
-%description -n vala-vte -l pl.UTF-8
+%description -n vala-vte2.90 -l pl.UTF-8
 API języka Vala dla biblioteki VTE.
 
 %package apidocs
@@ -108,6 +113,7 @@ Summary:	VTE API documentation (GTK+ 3 version)
 Summary(pl.UTF-8):	Dokumentacja API VTE (wersja dla GTK+ 3)
 Group:		Documentation
 Requires:	gtk-doc-common
+Obsoletes:	vte-apidocs < 0.37
 
 %description apidocs
 VTE API documentation (GTK+ 3 version).
@@ -188,7 +194,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libvte-2.90.a
 
-%files -n vala-vte
+%files -n vala-vte2.90
 %defattr(644,root,root,755)
 %{_datadir}/vala/vapi/vte-2.90.vapi
 
