@@ -179,19 +179,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libvte-2.91.so
-%{_includedir}/vte-2.91
-%{_pkgconfigdir}/vte-2.91.pc
-%{_datadir}/gir-1.0/Vte-2.91.gir
+%attr(755,root,root) %{_libdir}/libvte-2.90.so
+%{_includedir}/vte-2.90
+%{_pkgconfigdir}/vte-2.90.pc
+%{_datadir}/gir-1.0/Vte-2.90.gir
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libvte-2.91.a
+%{_libdir}/libvte-2.90.a
 
 %files -n vala-vte
 %defattr(644,root,root,755)
-%{_datadir}/vala/vapi/vte-2.91.vapi
+%{_datadir}/vala/vapi/vte-2.90.vapi
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/vte-2.91
+%{_gtkdocdir}/vte-2.90
