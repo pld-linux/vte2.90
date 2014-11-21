@@ -29,7 +29,6 @@ BuildRequires:	pango-devel >= 1:1.22.0
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.592
 BuildRequires:	tar >= 1:1.22
-#BuildRequires:	vala >= 2:0.18
 BuildRequires:	xz
 Requires:	%{name}-common = %{version}-%{release}
 Requires:	glib2 >= 1:2.40.0
@@ -93,20 +92,6 @@ Static version of VTE library for GTK+ 3.
 
 %description static -l pl.UTF-8
 Statyczna wersja biblioteki VTE dla GTK+ 3.
-
-%package -n vala-vte2.90
-Summary:	Vala API for VTE library
-Summary(pl.UTF-8):	API języka Vala dla biblioteki VTE
-Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
-Requires:	vala >= 2:0.18
-Obsoletes:	vala-vte < 0.37
-
-%description -n vala-vte2.90
-Vala API for VTE library.
-
-%description -n vala-vte2.90 -l pl.UTF-8
-API języka Vala dla biblioteki VTE.
 
 %package apidocs
 Summary:	VTE API documentation (GTK+ 3 version)
@@ -192,11 +177,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libvte-2.90.a
-
-%files -n vala-vte2.90
-%defattr(644,root,root,755)
-%{_datadir}/vala/vapi/vte-2.90.vapi
+%{_libdir}/libvte2_90.a
 
 %files apidocs
 %defattr(644,root,root,755)
