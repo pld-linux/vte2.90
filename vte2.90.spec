@@ -3,7 +3,7 @@ Summary:	VTE terminal widget library
 Summary(pl.UTF-8):	Biblioteka z kontrolką terminala VTE
 Name:		vte2.90
 Version:	0.36.4
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/vte/0.36/vte-%{version}.tar.xz
@@ -34,9 +34,9 @@ Requires:	%{name}-common = %{version}-%{release}
 Requires:	glib2 >= 1:2.40.0
 Requires:	gtk+3 >= 3.8.0
 Requires:	pango >= 1:1.22.0
+Obsoletes:	vte < 0.37
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
-Obsoletes:	vte < 0.37
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -69,8 +69,8 @@ Requires:	glib2-devel >= 1:2.40.0
 Requires:	gtk+3-devel >= 3.8.0
 Requires:	ncurses-devel
 Requires:	pango-devel >= 1:1.22.0
-Conflicts:	gnome-libs-devel < 1.4.1.2
 Obsoletes:	vte-devel < 0.37
+Conflicts:	gnome-libs-devel < 1.4.1.2
 
 %description devel
 This package contains header files for GTK+ 3 based vte library.
@@ -84,8 +84,8 @@ Summary:	Static VTE library for GTK+ 3
 Summary(pl.UTF-8):	Statyczna biblioteka VTE dla GTK+ 3
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-Conflicts:	gnome-libs-static < 1.4.1.2
 Obsoletes:	vte-static < 0.37
+Conflicts:	gnome-libs-static < 1.4.1.2
 
 %description static
 Static version of VTE library for GTK+ 3.
@@ -99,6 +99,9 @@ Summary(pl.UTF-8):	Dokumentacja API VTE (wersja dla GTK+ 3)
 Group:		Documentation
 Requires:	gtk-doc-common
 Obsoletes:	vte-apidocs < 0.37
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 VTE API documentation (GTK+ 3 version).
