@@ -99,9 +99,7 @@ Summary(pl.UTF-8):	Dokumentacja API VTE (wersja dla GTK+ 3)
 Group:		Documentation
 Requires:	gtk-doc-common
 Obsoletes:	vte-apidocs < 0.37
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 VTE API documentation (GTK+ 3 version).
